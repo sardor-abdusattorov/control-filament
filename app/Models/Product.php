@@ -20,7 +20,6 @@ class Product extends Model
         'price',
         'quantity',
         'unit',
-        'image',
         'status',
     ];
 
