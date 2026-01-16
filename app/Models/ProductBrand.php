@@ -4,17 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Translatable\HasTranslations;
 
-class ProductBrand extends Model
+class ProductBrand extends Model implements HasMedia
 {
-    use HasTranslations;
+    use HasFactory, HasTranslations, InteractsWithMedia;
 
     public $translatable = ['name'];
 
     protected $fillable = [
         'name',
-        'image',
         'status',
         'sort',
     ];
@@ -23,6 +25,8 @@ class ProductBrand extends Model
         'sort' => 'integer',
         'status' => 'boolean',
     ];
+
+    protected $appends = ['image_url'];
 
 
     const STATUS_INACTIVE = 0;
@@ -37,6 +41,28 @@ class ProductBrand extends Model
             self::STATUS_ACTIVE => __('Active'),
             self::STATUS_INACTIVE => __('Inactive'),
         ];
+    }
+
+    /**
+     * Register media collections
+     */
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('product_brand')->singleFile();
+    }
+
+    /**
+     * Get image URL attribute
+     */
+    public function getImageUrlAttribute(): string
+    {
+        $media = $this->getFirstMedia('product_brand');
+
+        if ($media && Storage::disk($media->disk)->exists($media->getPathRelativeToRoot())) {
+            return $media->getUrl();
+        }
+
+        return asset('images/no_image.png');
     }
 
     /**
