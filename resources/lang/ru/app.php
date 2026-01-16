@@ -34,11 +34,13 @@ return [
         'price' => 'Цена',
         'quantity' => 'Количество',
         'unit' => 'Единица измерения',
-        'media' => 'Изображения',
-        'product_image' => 'Изображение товара',
+        'image' => 'Изображение',
         'additional_settings' => 'Дополнительные настройки',
 
 
+
+        'brand_single' => 'Бренд',
+        'brand_plural' => 'Бренды',
 
         // languages
         'ru' => 'Русский',

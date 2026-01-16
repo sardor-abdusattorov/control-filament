@@ -37,8 +37,8 @@ class Product extends Model
     public static function getStatuses(): array
     {
         return [
-            self::STATUS_ACTIVE => __('Active'),
-            self::STATUS_INACTIVE => __('Inactive'),
+            self::STATUS_ACTIVE => __('app.status.active'),
+            self::STATUS_INACTIVE => __('app.status.inactive'),
         ];
     }
 

@@ -2,19 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Translatable\HasTranslations;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class ProductBrand extends Model
+class ProductBrand extends Model implements HasMedia
 {
-    use HasTranslations;
-
-    public $translatable = ['name'];
+    use InteractsWithMedia;
 
     protected $fillable = [
         'name',
-        'image',
         'status',
         'sort',
     ];
@@ -23,7 +20,6 @@ class ProductBrand extends Model
         'sort' => 'integer',
         'status' => 'boolean',
     ];
-
 
     const STATUS_INACTIVE = 0;
     const STATUS_ACTIVE = 1;
@@ -34,8 +30,8 @@ class ProductBrand extends Model
     public static function getStatuses(): array
     {
         return [
-            self::STATUS_ACTIVE => __('Active'),
-            self::STATUS_INACTIVE => __('Inactive'),
+            self::STATUS_ACTIVE => __('app.status.active'),
+            self::STATUS_INACTIVE => __('app.status.inactive'),
         ];
     }
 
@@ -45,5 +41,10 @@ class ProductBrand extends Model
     public function products()
     {
         return $this->hasMany(Product::class, 'brand_id');
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('product_brand')->singleFile();
     }
 }

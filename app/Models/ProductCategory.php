@@ -4,23 +4,40 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Translatable\HasTranslations;
 
-class ProductCategory extends Model
+class ProductCategory extends Model implements HasMedia
 {
-    use HasTranslations;
+    use HasTranslations, InteractsWithMedia;
 
     public $translatable = ['name'];
 
     protected $fillable = [
         'name',
-        'image',
+        'status',
         'sort',
     ];
 
     protected $casts = [
         'sort' => 'integer',
+        'status' => 'boolean',
     ];
+
+    const STATUS_INACTIVE = 0;
+    const STATUS_ACTIVE = 1;
+
+    /**
+     * Get available statuses
+     */
+    public static function getStatuses(): array
+    {
+        return [
+            self::STATUS_ACTIVE => __('app.status.active'),
+            self::STATUS_INACTIVE => __('app.status.inactive'),
+        ];
+    }
 
     /**
      * Relationship with products
@@ -30,19 +47,9 @@ class ProductCategory extends Model
         return $this->hasMany(Product::class, 'category_id');
     }
 
-    /**
-     * Get formatted created_at
-     */
-    public function getCreatedAtAttribute($value)
+    public function registerMediaCollections(): void
     {
-        return $value ? date('d-m-Y H:i', strtotime($value)) : null;
+        $this->addMediaCollection('image')->singleFile();
     }
 
-    /**
-     * Get formatted updated_at
-     */
-    public function getUpdatedAtAttribute($value)
-    {
-        return $value ? date('d-m-Y H:i', strtotime($value)) : null;
-    }
 }

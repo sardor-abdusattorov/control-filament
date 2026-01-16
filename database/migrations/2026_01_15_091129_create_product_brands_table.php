@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('product_brands', function (Blueprint $table) {
             $table->id();
-            $table->json('name');
+            $table->string('name')->nullable();
             $table->integer('sort')->default(0);
             $table->boolean('status')->default(1);
             $table->timestamps();
