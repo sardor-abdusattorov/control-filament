@@ -36,14 +36,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Filament::serving(function () {
-
-        });
-        LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
-            $switch
-                ->locales(['ru','uz','en']);
-        });
-
         TranslatableTabs::configureUsing(function (TranslatableTabs $component) {
             $component
                 ->localesLabels([

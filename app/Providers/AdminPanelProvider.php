@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Filament\Pages\Settings\Settings;
+use Awcodes\LightSwitch\LightSwitchPlugin;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
+use CraftForge\FilamentLanguageSwitcher\FilamentLanguageSwitcherPlugin;
 use DiogoGPinto\AuthUIEnhancer\AuthUIEnhancerPlugin;
 use Filament\Enums\ThemeMode;
 use Filament\Http\Middleware\Authenticate;
@@ -46,12 +48,22 @@ class AdminPanelProvider extends PanelProvider
             ->profile(EditProfile::class, isSimple: false)
             ->defaultThemeMode(ThemeMode::Light)
             ->font('Montserrat')
-            ->spa()
+            ->spa(false)
             ->databaseNotifications()
             ->navigationItems([
 
             ])
             ->plugins([
+                LightSwitchPlugin::make(),
+
+                FilamentLanguageSwitcherPlugin::make()
+                    ->showFlags(false)
+                    ->locales([
+                        ['code' => 'en', 'name' => 'English', 'flag' => 'gb'],
+                        ['code' => 'ru', 'name' => 'Russian', 'flag' => 'ru'],
+                        ['code' => 'uz', 'name' => 'Uzbek', 'flag' => 'uz'],
+                    ]),
+
                 FilamentPeekPlugin::make()
                     ->disablePluginStyles(),
 
