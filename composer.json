@@ -11,6 +11,7 @@
   "require": {
     "php": "^8.2",
     "abdulmajeed-jamaan/filament-translatable-tabs": "^3.0",
+    "awcodes/light-switch": "^1.0",
     "aymanalhattami/filament-slim-scrollbar": "^2.1",
     "bezhansalleh/filament-language-switch": "^3.1",
     "bezhansalleh/filament-shield": "*",

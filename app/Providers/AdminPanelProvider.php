@@ -78,9 +78,9 @@ class AdminPanelProvider extends PanelProvider
                 AuthUIEnhancerPlugin::make()
                     ->showEmptyPanelOnMobile(false)
                     ->formPanelPosition('left')
-                    ->formPanelWidth('35%')
+                    ->formPanelWidth('40%')
                     ->emptyPanelBackgroundImageOpacity('70%')
-                    ->emptyPanelBackgroundImageUrl('https://images.pexels.com/photos/466685/pexels-photo-466685.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'),
+                    ->emptyPanelBackgroundImageUrl('/images/background.jpeg'),
 
                 FilamentEditProfilePlugin::make()
                     ->slug('my-profile')
@@ -113,7 +113,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->maxContentWidth(MaxWidth::Full)
             ->sidebarCollapsibleOnDesktop()
-            ->viteTheme('resources/css/filament/theme.css')
+            ->viteTheme('resources/css/theme.css')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
