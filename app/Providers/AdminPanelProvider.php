@@ -77,8 +77,8 @@ class AdminPanelProvider extends PanelProvider
                 FilamentProgressbarPlugin::make()->color('#29b'),
                 AuthUIEnhancerPlugin::make()
                     ->showEmptyPanelOnMobile(false)
-                    ->formPanelPosition('right')
-                    ->formPanelWidth('40%')
+                    ->formPanelPosition('left')
+                    ->formPanelWidth('35%')
                     ->emptyPanelBackgroundImageOpacity('70%')
                     ->emptyPanelBackgroundImageUrl('https://images.pexels.com/photos/466685/pexels-photo-466685.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'),
 
