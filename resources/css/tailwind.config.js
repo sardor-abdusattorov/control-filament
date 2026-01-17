@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 const colors = require("tailwindcss/colors");
 const defaultTheme = require("tailwindcss/defaultTheme");
-import preset from '../../../vendor/filament/filament/tailwind.config.preset'
+import preset from '../../vendor/filament/filament/tailwind.config.preset'
 
 function withOpacityValue(variable) {
     return ({ opacityValue }) => {
